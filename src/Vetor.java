@@ -29,6 +29,22 @@ public class Vetor {
         }
     }
 
+    public String busca(int posicao){
+        if (!(posicao >= 0 && posicao < tamanho)){//informando que se a posição informada não for maior que 0 e menor que posição
+            throw new IllegalArgumentException("Posição inválida");
+        }
+        return elementos[posicao];
+    }
+
+    public int busca(String elemento){
+        for (int i=0; i<tamanho; i++){// i é o elemento informado pelo user para busca no vetor
+            if (elementos[i].equals(elemento)){//se a posição informada i for igual ao elemento que está no vetor
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public int tamanho(){
         return this.tamanho;
 
@@ -39,7 +55,7 @@ public class Vetor {
         StringBuilder s = new StringBuilder();
         s.append("[");
 
-        for (int i=0; i<this.tamanho-1; i++){
+        for (int i=0; i<this.tamanho-1; i++){//iteração dos elementos
             s.append(this.elementos[i]);
             s.append(" , ");
         }
