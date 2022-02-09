@@ -28,6 +28,23 @@ public class Vetor {
             throw new Exception("Vetor cheio");
         }
     }
+        //0 1 2 3 4 5 6....10 o tamanho do vetor é 5
+        //B C E F G + +
+    public boolean adiciona(int posicao, String elemento){
+        if (!(posicao >= 0 && posicao < tamanho)){//informando que se a posição informada não for maior que 0 e menor que posição
+            throw new IllegalArgumentException("Posição inválida");
+        }
+
+        //Mover todos os elementos
+        for (int i=this.tamanho-1; i>=posicao; i--){//colocando o vetor uma casa atrás - 4
+            this.elementos[i+1] = this.elementos[i];// dizendo que o "4+1 = 5 vai receber o valor que estava no 4"
+        }
+
+        this.elementos[posicao] = elemento;
+        this.tamanho ++;
+
+        return true;
+    }
 
     public String busca(int posicao){
         if (!(posicao >= 0 && posicao < tamanho)){//informando que se a posição informada não for maior que 0 e menor que posição
