@@ -4,6 +4,8 @@ public class Vetor {
 
     private String[] elementos;
     private int tamanho;
+    private String[] elementosNovos;
+    private int i;
 
     public Vetor(int capacidade){
         this.elementos = new String[capacidade];
@@ -28,13 +30,14 @@ public class Vetor {
             throw new Exception("Vetor cheio");
         }
     }
-        //0 1 2 3 4 5 6....10 o tamanho do vetor é 5
-        //B C E F G + +
+        
     public boolean adiciona(int posicao, String elemento){
         if (!(posicao >= 0 && posicao < tamanho)){//informando que se a posição informada não for maior que 0 e menor que posição
             throw new IllegalArgumentException("Posição inválida");
         }
-
+        //0 1 2 3 4 5 6....10 o tamanho do vetor é 5
+        //B C E F G + +
+        //posicao é o elemento que eu informo na Aula07
         //Mover todos os elementos
         for (int i=this.tamanho-1; i>=posicao; i--){//colocando o vetor uma casa atrás - 4
             this.elementos[i+1] = this.elementos[i];// dizendo que o "4+1 = 5 vai receber o valor que estava no 4"
@@ -44,6 +47,17 @@ public class Vetor {
         this.tamanho ++;
 
         return true;
+    }
+
+    private void aumentaCapacidade(){
+        if (this.tamanho == this.elementos.length){
+            String[] elementosNovos = new String[this.elementos.length * 2];
+            for (int i=0; i < this.elementos.length; i++);
+            
+            elementosNovos[i] = this.elementos[i];
+        }
+    
+        this.elementos = elementosNovos;
     }
 
     public String busca(int posicao){
@@ -60,6 +74,17 @@ public class Vetor {
             }
         }
         return -1;
+    }
+      //B G D E F -> posição a ser removida é o 1 (G)
+      //0 1 2 3 4 -> tamanho é 5
+    public void remove(int posicao){
+        if (!(posicao >= 0 && posicao < tamanho)){//informando que se a posição informada não for maior que 0 e menor que posição
+            throw new IllegalArgumentException("Posição inválida");
+        }
+        for (int i=posicao; i<this.tamanho-1; i++){
+            this.elementos[i] = this.elementos[i+2];
+        }
+        tamanho--; //diminui o tamanho do vetor
     }
 
     public int tamanho(){
